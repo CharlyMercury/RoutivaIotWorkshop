@@ -2,7 +2,11 @@
 
 cd C:\Users\Charly Mercury\Desktop\RoutivaIotWorkshop\things_code
 
-set start_time=%TIME%
+rem Get start time:
+for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (
+   set /A "start=(((%%a*60)+1%%b %% 100)*60+1%%c %% 100)*100+1%%d %% 100"
+)
+
 set timeout_flash=5
 set timeout_restart=5
 set timeout_upload_micropython=30
@@ -70,27 +74,10 @@ if %errorlevel% equ 1 (
   echo.
 )
 
-:: Reset esp32
+:: Upload umqttsimple file
 echo.
 echo ----------------------------------------
-echo Restarting esp32
-echo ----------------------------------------
-echo.
-ampy --port %PUERTO% run reset_machine.py --no-output
-if %errorlevel% equ 1 (
-  echo.
-  echo Process timed out after with Errors. Terminating. Problem rebooting esp32.
-  echo.
-) else (
-  echo.
-  echo Esp32 was rebooted correctly
-  echo.
-)
-
-:: Upload modules directory
-echo.
-echo ----------------------------------------
-echo Uploading modules to esp32
+echo Uploading umqttsimple to esp32
 echo ----------------------------------------
 echo.
 ampy --port %PUERTO% put umqttsimple.py
@@ -100,7 +87,41 @@ if %errorlevel% equ 1 (
   echo.
 ) else (
   echo.
-  echo modules uploaded correctly
+  echo umqttsimple uploaded correctly
+  echo.
+)
+
+:: Upload read_sensor file
+echo.
+echo ----------------------------------------
+echo Uploading read_sensor to esp32
+echo ----------------------------------------
+echo.
+ampy --port %PUERTO% put read_sensor.py
+if %errorlevel% equ 1 (
+  echo.
+  echo Process timed out after with Errors. Terminating.
+  echo.
+) else (
+  echo.
+  echo read_sensor uploaded correctly
+  echo.
+)
+
+:: Upload parameters json
+echo.
+echo ----------------------------------------
+echo Uploading parameters.json to esp32
+echo ----------------------------------------
+echo.
+ampy --port %PUERTO% put parameters_configuration.json
+if %errorlevel% equ 1 (
+  echo.
+  echo Process timed out after with Errors. Terminating.
+  echo.
+) else (
+  echo.
+  echo parameters.json uploaded correctly
   echo.
 )
 
@@ -110,7 +131,6 @@ echo ----------------------------------------
 echo Uploading main.py and boot.py to esp32
 echo ----------------------------------------
 echo.
-cd src
 ampy --port %PUERTO% put main.py boot.py
 if %errorlevel% equ 1 (
   echo.
@@ -128,8 +148,8 @@ echo ----------------------------------------
 echo Restarting esp32
 echo ----------------------------------------
 echo.
-cd C:\Users\Charly Mercury\Desktop\RoutivaIotWorkshop\things_code
-ampy --port %PUERTO% run reset_machine.py --no-output
+:: ampy --port %PUERTO% run reset_machine.py
+:: ampy --port %PUERTO% run reset_machine.py --no-output
 if %errorlevel% equ 1 (
   echo.
   echo Process timed out after with Errors. Terminating. Problem rebooting esp32.
@@ -139,3 +159,24 @@ if %errorlevel% equ 1 (
   echo Esp32 was rebooted correctly
   echo.
 )
+
+rem Get end time:
+for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (
+   set /A "end=(((%%a*60)+1%%b %% 100)*60+1%%c %% 100)*100+1%%d %% 100"
+)
+
+rem Get elapsed time:
+set /A elapsed=%end%-%start%
+
+echo.
+echo ----------------------------------------
+rem Show elapsed time:
+set /A hh=elapsed/(60*60*100), rest=elapsed%%(60*60*100), mm=rest/(60*100), rest%%=60*100, ss=rest/100, cc=rest%%100
+if %mm% lss 10 set mm=0%mm%
+if %ss% lss 10 set ss=0%ss%
+if %cc% lss 10 set cc=0%cc%
+echo %hh%:%mm%:%ss%.%cc%
+echo ----------------------------------------
+echo.
+
+deactivate

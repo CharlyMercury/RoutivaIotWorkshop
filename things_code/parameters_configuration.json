@@ -1,0 +1,9 @@
+{
+  "endpoint":"192.168.0.22",
+  "ssid": "IZZI-6D04",
+  "password": "F0AF85386D04",
+  "sub_topics": ["sensor"],
+  "pub_topics": ["sensors_value"],
+  "sensor": "light",
+  "ldr": [[34, "Led derecha"], [35, "Led izquierda"]]
+}
