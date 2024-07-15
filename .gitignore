@@ -86,3 +86,7 @@ Thumbs.db
 *.swp
 *.tmp
 *.temp
+
+
+# Binaries
+*.bin

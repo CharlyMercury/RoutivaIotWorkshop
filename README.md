@@ -49,8 +49,10 @@ de telemetría en tiempo real desde dispositivos IoT.
 
 ¡Regístrate ahora para asegurar tu lugar y dar el primer paso hacia dominar el IoT con AWS!
 
-
+##
 (English Version)
+##
+
 
 # IoT Workshop: Building Connected Solutions with AWS
 
