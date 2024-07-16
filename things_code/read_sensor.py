@@ -36,7 +36,7 @@ class LDR:
 with open(file=r'./parameters_configuration.json', mode='r', encoding='utf-8') as file:
     parameters_ = json.load(file)
 
-if parameters_['sensor'] == "light":
+if 'sensor' in parameters_ and parameters_['sensor'] == "light":
     # initialize an LDR
     print(parameters_['ldr'][0][0], parameters_['ldr'][0][1])
     print(parameters_['ldr'][1][0], parameters_['ldr'][1][1])
@@ -44,7 +44,7 @@ if parameters_['sensor'] == "light":
     ldr_2 = LDR(parameters_['ldr'][1][0], parameters_['ldr'][1][1])
 
 
-def read_sensor_(sensor_name: str):
+def read_sensor(sensor_name: str):
 
     if sensor_name == "light":
         value = ldr_1.value()

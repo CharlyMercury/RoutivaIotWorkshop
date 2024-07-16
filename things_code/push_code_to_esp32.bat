@@ -108,6 +108,23 @@ if %errorlevel% equ 1 (
   echo.
 )
 
+:: Upload activate_actuator file
+echo.
+echo ----------------------------------------
+echo Uploading activate_actuator to esp32
+echo ----------------------------------------
+echo.
+ampy --port %PUERTO% put activate_actuator.py
+if %errorlevel% equ 1 (
+  echo.
+  echo Process timed out after with Errors. Terminating.
+  echo.
+) else (
+  echo.
+  echo activate_actuator uploaded correctly
+  echo.
+)
+
 :: Upload parameters json
 echo.
 echo ----------------------------------------

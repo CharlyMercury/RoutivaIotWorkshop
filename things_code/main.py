@@ -1,3 +1,19 @@
+"""
+
+ To read ldr use
+    - mosquitto_pub -d -t sensor -m '{"action": {"turn-on":"light", "state": true}}'
+ to turn-off readings
+    - mosquitto_pub -d -t sensor -m '{"action": {"turn-on":"light", "state": false}}'
+
+ hearing reading
+    -    mosquitto_sub -d -t sensors_value
+
+ To turn-on a led use
+    - mosquitto_pub -d -t actuator -m '{"action": {"turn-on":"leds", "location": "Comedor", "state": true}}'
+ to turn-off a led
+    - mosquitto_pub -d -t actuator -m '{"action": {"turn-on":"leds", "location": "Comedor", "state": false}}'
+
+"""
 import json
 import time
 import machine
@@ -6,7 +22,8 @@ from umqttsimple import MQTTClient
 import network
 import esp
 import gc
-from read_sensor import read_sensor_
+from read_sensor import read_sensor
+from activate_actuator import activate_actuator
 
 esp.osdebug(None)
 gc.collect()
@@ -19,7 +36,8 @@ with open(file=r'./parameters_configuration.json', mode='r', encoding='utf-8') a
     parameters_ = json.load(file)
 
 # Global Variables
-activate_light = False
+read_lights = False
+activate_light = [False, {}]
 
 
 def connect_wifi(ssid, password):
@@ -35,7 +53,7 @@ def connect_wifi(ssid, password):
 
 
 def sub_cb(topic, msg):
-    global activate_light
+    global read_lights, activate_light
 
     topic_str = topic.decode('utf-8')
     payload_message = json.loads(msg.decode('utf-8'))
@@ -44,11 +62,17 @@ def sub_cb(topic, msg):
         if 'turn-on' in payload_message['action']:
             if payload_message['action']['turn-on'] == parameters_['sensor']:
                 if payload_message['action']['state']:
-                    activate_light = True
+                    read_lights = True
                 if not payload_message['action']['state']:
-                    activate_light = False
+                    read_lights = False
 
-    print(topic, msg, activate_light)
+    if topic_str == 'actuator':
+        if 'turn-on' in payload_message['action'] and payload_message['action']['turn-on'] == parameters_['actuator']:
+            activate_light = [True, payload_message]
+        if 'turn-off' in payload_message['action'] and payload_message['action']['turn-off'] == parameters_['actuator']:
+            activate_light = [False, payload_message]
+
+    print(topic, msg, "read lights: ", read_lights, "activate_lights:", activate_light)
 
 
 def restart_and_reconnect():
@@ -103,7 +127,6 @@ except OSError as err:
     print(err)
     restart_and_reconnect()
 
-
 while True:
 
     try:
@@ -111,9 +134,21 @@ while True:
     except OSError as e:
         restart_and_reconnect()
 
-    if activate_light:
-        value = read_sensor_(parameters_['sensor'])
+    if read_lights:
+        value = read_sensor(parameters_['sensor'])
         client.publish_to_topics(topic=parameters_["pub_topics"], input_message=value)
         time.sleep(0.9)
 
-    time.sleep(0.1)
+    if activate_light[0] and 'action' in activate_light[1]:
+        value = activate_actuator(activate_light[1]['action']['turn-on'],
+                                  activate_light[1]['action']['location'],
+                                  activate_light[1]['action']['state'])
+        activate_light[1] = {}
+
+    if not activate_light[0] and 'action' in activate_light[1]:
+        value = activate_actuator(activate_light[1]['action']['turn-off'],
+                                  activate_light[1]['action']['location'],
+                                  activate_light[1]['action']['state'])
+        activate_light[1] = {}
+
+    time.sleep(0.5)
