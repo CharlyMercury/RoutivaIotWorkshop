@@ -1,0 +1,8 @@
+{
+"endpoint":"a1svajesngnqg2-ats.iot.us-east-1.amazonaws.com",
+"client":"access_control",
+"topics_to_subscribe_aws":["actuator", "sensor", "exit"],
+"topics_to_publish_aws":["sensors_value"],
+"topics_to_subscribe_mosquitto":["sensors_value", "exit"],
+"topics_to_publish_aws_mosquitto":["sensors_value"]
+}

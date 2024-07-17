@@ -1,0 +1,3 @@
+awscrt==0.21.1
+awsiotsdk==1.22.0
+paho-mqtt==1.6.1

@@ -49,4 +49,4 @@ def read_sensor(sensor_name: str):
     if sensor_name == "light":
         value = ldr_1.value()
         value2 = ldr_2.value()
-        return {"value": [value, value2]}
+        return {"ldr": [value, value2]}

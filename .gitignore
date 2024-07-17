@@ -90,3 +90,6 @@ Thumbs.db
 
 # Binaries
 *.bin
+
+# Certificates
+certificates/
