@@ -19,3 +19,13 @@ Parameters configuration examples
   "actuator": "leds",
   "leds": [[4, "Comedor"], [5, "Sala"], [19, "Dormitorio"], [21, "Descanso"], [25, "Azotea"], [26, "Jardin"], [27, "Exterior"]]
 }
+
+{
+  "endpoint":"192.168.1.101",
+  "ssid": "TP-Link_DDDE",
+  "password": "31223515",
+  "sub_topics": ["actuator"],
+  "pub_topics": ["actuator_value"],
+  "actuator": "fans",
+  "fans": [[4, "cocina"]]
+}

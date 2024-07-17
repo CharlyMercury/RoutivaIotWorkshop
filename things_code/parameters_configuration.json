@@ -2,8 +2,8 @@
   "endpoint":"192.168.1.101",
   "ssid": "TP-Link_DDDE",
   "password": "31223515",
-  "sub_topics": ["sensor"],
-  "pub_topics": ["sensors_value"],
-  "sensor": "light",
-  "ldr": [[34, "Ldr derecha"], [35, "Ldr izquierda"]]
+  "sub_topics": ["actuator"],
+  "pub_topics": ["actuator_value"],
+  "actuator": "fans",
+  "fans": [[4, "cocina"]]
 }
