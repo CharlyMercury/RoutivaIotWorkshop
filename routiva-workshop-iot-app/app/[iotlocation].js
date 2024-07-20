@@ -1,8 +1,10 @@
-import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
-import { Link, useLocalSearchParams, Stack } from "expo-router";
+import { Image, ScrollView, Text, View } from "react-native";
+import { useLocalSearchParams, Stack } from "expo-router";
 import { useState, useEffect } from "react";
 import { Screen } from "../components/Screen";
 import { getIotsDetails } from "../lib/iot";
+
+// let awsIot = require("aws-iot-device-sdk");
 
 export default function Detail() {
   const { iotlocation } = useLocalSearchParams();
@@ -19,7 +21,7 @@ export default function Detail() {
     <Screen>
       <Stack.Screen
         options={{
-          headerStyle: { backgroundColor: "white " },
+          headerStyle: { backgroundColor: "#448aff" },
           headerTintColor: "black",
           headerLeft: () => {},
           headerTitle: iots.title,

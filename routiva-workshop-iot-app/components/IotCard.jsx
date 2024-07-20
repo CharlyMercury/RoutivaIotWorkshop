@@ -5,8 +5,8 @@ import { View, Text, Image, Animated, Pressable } from "react-native";
 export function IotCard({ iot }) {
   return (
     <Link href={`/${iot.slug}`} asChild>
-      <Pressable className="active:opacity-70 border border-black active:border-white/50 bg-slate-500/10 p-4 rounded-xl">
-        <View className="flex-row gap-4 mb-4" key={iot.slug}>
+      <Pressable className="active:opacity-70 border border-black active:border-white/50 mt-2 bg-slate-500/0 p-2 rounded-xl">
+        <View className="flex-row gap-4 mb-2" key={iot.slug}>
           <Image
             source={{ uri: iot.image }}
             className="mb-1 rounded-2xl w-36 h-36"

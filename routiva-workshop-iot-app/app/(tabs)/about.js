@@ -1,4 +1,4 @@
-import { Screen } from "../components/Screen";
+import { Screen } from "../../components/Screen";
 import { ScrollView, Text } from "react-native";
 
 export default function About() {

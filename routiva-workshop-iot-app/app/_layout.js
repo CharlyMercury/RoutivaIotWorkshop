@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { Pressable, View } from "react-native";
-import { CircleInfoIcon } from "../components/Icons";
+import { InfoIcon } from "../components/Icons";
 import { Logo } from "../components/Logo";
 
 export default function Layout() {
@@ -8,17 +8,10 @@ export default function Layout() {
     <View className="flex-1">
       <Stack
         screenOptions={{
-          headerStyle: { backgroundColor: "black" },
+          headerStyle: { backgroundColor: "#448aff" },
           headerTintColor: "yellow",
           headerTitle: "",
           headerLeft: () => <Logo />,
-          headerRight: () => (
-            <Link asChild href="/about">
-              <Pressable>
-                <CircleInfoIcon />
-              </Pressable>
-            </Link>
-          ),
         }}
       />
     </View>
