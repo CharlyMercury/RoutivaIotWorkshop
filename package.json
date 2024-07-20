@@ -1,0 +1,12 @@
+{
+  "name": "routivaiotworkshop",
+  "version": "1.0.0",
+  "description": "Bienvenido al Taller de IoT: **Construyendo Soluciones Conectadas con AWS**. \r Este taller práctico te guiará a través del proceso de diseñar, desarrollar y desplegar \r soluciones de Internet de las Cosas (IoT) utilizando una variedad de servicios de AWS. \r Adquirirás experiencia práctica en la recolección, procesamiento y visualización de datos \r de telemetría en tiempo real desde dispositivos IoT.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
