@@ -33,6 +33,7 @@ import gc
 from umqttsimple import MQTTClient
 from read_sensor import read_sensor
 from activate_actuator import activate_actuator
+from alerts import alert_interrup
 
 # Disable OS debugging and collect garbage
 esp.osdebug(None)
@@ -76,6 +77,8 @@ def sub_cb(topic, msg):
     global read_sensors, activate_actuator_var
     topic_str = topic.decode('utf-8')
     payload_message = json.loads(msg.decode('utf-8'))
+
+    print(payload_message)
 
     if topic_str == 'sensor':
         if 'turn-on' in payload_message['action'] and payload_message['action']['turn-on'] == parameters_['sensor']:
@@ -139,6 +142,7 @@ class LocalMqttClient:
         """
         if input_message:
             message_json = json.dumps(input_message).encode()
+            print(topic, message_json)
             self.client.publish(topic.encode(), msg=message_json, qos=1)
 
     def check_msg(self):
@@ -190,4 +194,14 @@ while True:
         value = activate_actuator(action['turn-off'], action['location'], action['state'])
         activate_actuator_var[1] = {}
 
-    time.sleep(0.5)
+    if 'sensor' in parameters_:
+        if parameters_['sensor'] == "alerts":
+            motion = alert_interrup(True)
+            if motion == True:
+                value = {"alerta": "Movimiento detectado"}
+                print(parameters_["pub_topics"], value)
+                client.publish_to_topics(topic=parameters_["pub_topics"][0], input_message=value)
+                time.sleep(5)
+                motion = alert_interrup(False)
+
+    time.sleep(0.1)

@@ -1,9 +1,9 @@
 {
-  "endpoint":"192.168.1.101",
+  "endpoint":"192.168.43.91",
   "ssid": "TP-Link_DDDE",
   "password": "31223515",
   "sub_topics": ["actuator"],
   "pub_topics": ["actuator_value"],
-  "actuator": "fans",
-  "fans": [[4, "cocina"]]
+  "actuator": "leds",
+  "leds": [[4, "comedor"], [5, "sala"], [19, "dormitorio"], [21, "descanso"], [25, "azotea"], [26, "jardin"], [27, "exterior"]]
 }

@@ -1,12 +1,40 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { useLocalSearchParams, Stack } from "expo-router";
 import { useState, useEffect } from "react";
 import { Screen } from "../components/Screen";
 import { getIotsDetails } from "../lib/iot";
 
-// let awsIot = require("aws-iot-device-sdk");
+import awsmobile from "../lib/aws-export";
+import { Amplify } from "aws-amplify";
+import { PubSub } from "@aws-amplify/pubsub";
+import { FanIcon, LightBulbIcon } from "../components/Icons";
+
+import { PermissionsAndroid } from "react-native";
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+
+Amplify.configure(awsmobile);
+
+const pubsub = new PubSub({
+  endpoint: "wss://a1svajesngnqg2-ats.iot.us-east-1.amazonaws.com/mqtt",
+  region: "us-east-1",
+});
 
 export default function Detail() {
+  const [isActive, setIsActive] = useState(false);
+  const [actuator, setActuator] = useState("");
+  const [isFanActive, setIsFanActive] = useState(true);
+  let state = false;
+
+  const handlePress = () => {
+    setIsActive(!isActive);
+    setActuator("leds");
+  };
+
+  const handleFanPress = () => {
+    setIsFanActive(!isFanActive);
+    setActuator("fans");
+  };
+
   const { iotlocation } = useLocalSearchParams();
 
   const [iots, setIots] = useState([]);
@@ -16,6 +44,26 @@ export default function Detail() {
       getIotsDetails(iotlocation).then(setIots);
     }
   }, [iotlocation]);
+
+  useEffect(() => {
+    pubsub.subscribe({ topics: [] }).subscribe({});
+  }, [iotlocation]);
+
+  useEffect(() => {
+    pubsub
+      .publish({
+        topics: "actuator",
+        message: {
+          action: {
+            "turn-on": actuator,
+            location: iotlocation,
+            state: actuator === "leds" ? isActive : isFanActive,
+          },
+        },
+        qos: 1,
+      })
+      .catch((err) => console.error(err));
+  }, [actuator, iotlocation, isActive, isFanActive, setIsActive]);
 
   return (
     <Screen>
@@ -42,6 +90,30 @@ export default function Detail() {
             <Text className="text-white/70 mt-4 text-left mb-8 text-base">
               {iots.description}
             </Text>
+          </View>
+          <View>
+            <Pressable onPress={handlePress}>
+              <LightBulbIcon
+                className="justify-center items-center text-center"
+                color={isActive ? "yellow" : "gray"}
+              />
+              <Text className="text-white text-center font-bold text-xl">
+                {isActive ? "Encendido" : "Apagado"}
+              </Text>
+            </Pressable>
+            {iots.actuator ? (
+              <Pressable onPress={handleFanPress}>
+                <FanIcon
+                  className="mt-4 justify-center items-center text-center mb"
+                  color={isFanActive ? "gray" : "yellow"}
+                />
+                <Text className="text-white text-center font-bold text-xl">
+                  {isFanActive ? "Apagado" : "Encendido"}
+                </Text>
+              </Pressable>
+            ) : (
+              ""
+            )}
           </View>
         </ScrollView>
       </View>

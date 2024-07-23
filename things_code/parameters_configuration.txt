@@ -1,7 +1,9 @@
 Parameters configuration examples
 
+  "endpoint":"192.168.189.176",
+
 {
-  "endpoint":"192.168.0.22",
+  "endpoint":"192.168.43.91",
   "ssid": "TP-Link_DDDE",
   "password": "31223515",
   "sub_topics": ["sensor"],
@@ -10,22 +12,37 @@ Parameters configuration examples
   "ldr": [[34, "Ldr derecha"], [35, "Ldr izquierda"]]
 }
 
+  "endpoint":"192.168.189.176",
+
 {
-  "endpoint":"192.168.1.101",
+  "endpoint":"192.168.43.91",
   "ssid": "TP-Link_DDDE",
   "password": "31223515",
   "sub_topics": ["actuator"],
   "pub_topics": ["actuator_value"],
   "actuator": "leds",
-  "leds": [[4, "Comedor"], [5, "Sala"], [19, "Dormitorio"], [21, "Descanso"], [25, "Azotea"], [26, "Jardin"], [27, "Exterior"]]
+  "leds": [[4, "comedor"], [5, "sala"], [19, "dormitorio"], [21, "descanso"], [25, "azotea"], [26, "jardin"], [27, "exterior"]]
 }
 
+
+  "endpoint":"192.168.189.176",
+
 {
-  "endpoint":"192.168.1.101",
+  "endpoint":"192.168.43.91",
   "ssid": "TP-Link_DDDE",
   "password": "31223515",
   "sub_topics": ["actuator"],
   "pub_topics": ["actuator_value"],
   "actuator": "fans",
-  "fans": [[4, "cocina"]]
+  "fans": [[4, "comedor"]]
+}
+
+
+{
+  "endpoint":"192.168.43.91",
+  "ssid": "TP-Link_DDDE",
+  "password": "31223515",
+  "sub_topics": ["sensor"],
+  "pub_topics": ["alerts"],
+  "sensor": "alerts"
 }

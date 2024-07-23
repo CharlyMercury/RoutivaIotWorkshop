@@ -3,6 +3,7 @@ export async function getIots() {
     {
       slug: "comedor",
       title: "Comedor",
+      actuator: "fan",
       description: "Aquí puedes comer",
       image:
         "https://content.elmueble.com/medio/2024/01/12/asi-se-disena-un-comedor-para-que-sea-facil-de-limpiar_00000000_a792b683_240112130103_600x600.jpg",
@@ -68,6 +69,7 @@ export async function getIotsDetails(slug) {
     comedor: {
       slug: "comedor",
       title: "Comedor",
+      actuator: "fan",
       description: "Aquí puedes comer",
       image:
         "https://content.elmueble.com/medio/2024/01/12/asi-se-disena-un-comedor-para-que-sea-facil-de-limpiar_00000000_a792b683_240112130103_600x600.jpg",

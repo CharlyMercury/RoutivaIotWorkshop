@@ -125,6 +125,23 @@ if %errorlevel% equ 1 (
   echo.
 )
 
+:: Upload alerts file
+echo.
+echo ----------------------------------------
+echo Uploading alerts to esp32
+echo ----------------------------------------
+echo.
+ampy --port %PUERTO% put alerts.py
+if %errorlevel% equ 1 (
+  echo.
+  echo Process timed out after with Errors. Terminating.
+  echo.
+) else (
+  echo.
+  echo alerts uploaded correctly
+  echo.
+)
+
 :: Upload parameters json
 echo.
 echo ----------------------------------------

@@ -68,9 +68,11 @@ def activate_actuator(actuator_name, location_, state_):
     :param location_: The location of the actuator.
     :param state_: True to activate the actuator, False to deactivate it.
     """
-    if actuator_name == "leds" and location_ in leds_iot.actuators_list_locations:
-        leds_iot.write(location=location_, state=state_)
-    if actuator_name == "fans" and location_ in leds_iot.actuators_list_locations:
-        leds_iot.write(location=location_, state=state_)
-    else:
-        print(f"Actuator '{actuator_name}' at location '{location_}' not found or not supported.")
+    print(leds_iot.actuators_list_locations)
+    try:
+        if actuator_name == "leds" and (location_ in leds_iot.actuators_list_locations):
+            leds_iot.write(location=location_, state=state_)
+        if actuator_name == "fans" and (location_ in leds_iot.actuators_list_locations):
+            leds_iot.write(location=location_, state=state_)
+    except Exception as err:
+        print(f"{err}, {actuator_name, location_}")
