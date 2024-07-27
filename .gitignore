@@ -12,8 +12,8 @@ build/
 venv/
 .env
 
-google-services.json
-routivaworkshopiot-firebase-adminsdk-fsamt-b66e524459.json
+routiva-workshop-iot-app/google-services.json
+routiva-workshop-iot-app/routivaworkshopiot-firebase-adminsdk-fsamt-b66e524459.json
 
 # React
 node_modules/

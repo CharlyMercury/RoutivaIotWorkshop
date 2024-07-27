@@ -1,0 +1,65 @@
+[33mcommit ef23730bf19a9fd8546b97d65e3a6504f34ef6d1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Charly Mercury <carlos.mercury92@gmail.com>
+Date:   Sat Jul 27 08:18:44 2024 -0600
+
+    Files deleted
+
+[33mcommit 42ebe62d3940eea2a1a17ee3ade0bb4981572a3d[m
+Author: Charly Mercury <carlos.mercury92@gmail.com>
+Date:   Sat Jul 27 08:15:43 2024 -0600
+
+     Project Demo Finished Workshop
+
+[33mcommit 080a1ea7b93682565ac98529c47833c81e52a105[m
+Author: Charly Mercury <carlos.mercury92@gmail.com>
+Date:   Tue Jul 23 13:45:22 2024 -0600
+
+     Project Demo Finished
+
+[33mcommit f98b2a5f50bdf59e88d54f1a5e7512fc60a775e2[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Charly Mercury <carlos.mercury92@gmail.com>
+Date:   Sat Jul 20 02:08:27 2024 -0600
+
+    Mobile App - Frontend finished
+
+[33mcommit 35b092af9bc9b9fff257151e83e36585f3a5e2a2[m
+Author: Charly Mercury <carlos.mercury92@gmail.com>
+Date:   Fri Jul 19 18:20:21 2024 -0600
+
+    Mobile App - Initial Components
+
+[33mcommit c65f9603923386c181983b602cb942536e9e8643[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Wed Jul 17 16:53:17 2024 -0600
+
+    Docstrings added, refactoring some code, and fan-actuators added
+
+[33mcommit 4177998985858404ab2fe9cc0d617b3e57210fb8[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Wed Jul 17 14:15:36 2024 -0600
+
+     Mosquitto Client <-> Aws Client <-> Aws Cloud
+
+[33mcommit 99930fe67493abeb099176c0b8354f2a4f19ec4d[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Tue Jul 16 16:35:28 2024 -0600
+
+    Actuators Functionalities Added
+
+[33mcommit 4289f3c34498295ca725e107f674da128cc1f902[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Mon Jul 15 17:57:44 2024 -0600
+
+    added ldr sensor, push code to esp script
+
+[33mcommit a63b341671fec014b25cc67aa34a558b9d2ca4c1[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Mon Jul 15 08:03:33 2024 -0600
+
+    things code added
+
+[33mcommit bcbf4d9f50b9d02cde2450628caa217d2af4fe0f[m
+Author: Carlos Tovar <carlos.mercury92@gmail.com>
+Date:   Mon Jul 8 12:11:52 2024 -0600
+
+    First Commit
