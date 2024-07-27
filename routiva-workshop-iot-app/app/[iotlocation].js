@@ -22,7 +22,7 @@ const pubsub = new PubSub({
 export default function Detail() {
   const [isActive, setIsActive] = useState(false);
   const [actuator, setActuator] = useState("");
-  const [isFanActive, setIsFanActive] = useState(true);
+  const [isFanActive, setIsFanActive] = useState(false);
   let state = false;
 
   const handlePress = () => {
@@ -105,10 +105,10 @@ export default function Detail() {
               <Pressable onPress={handleFanPress}>
                 <FanIcon
                   className="mt-4 justify-center items-center text-center mb"
-                  color={isFanActive ? "gray" : "yellow"}
+                  color={isFanActive ? "yellow" : "gray"}
                 />
                 <Text className="text-white text-center font-bold text-xl">
-                  {isFanActive ? "Apagado" : "Encendido"}
+                  {isFanActive ? "Encendido" : "Apagado"}
                 </Text>
               </Pressable>
             ) : (

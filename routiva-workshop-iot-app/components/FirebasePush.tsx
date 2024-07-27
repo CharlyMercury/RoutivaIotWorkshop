@@ -120,7 +120,11 @@ export function FirebasePush() {
     console.log(expoPushToken);
   }
 
-  return (
+  return <View></View>;
+}
+
+/*
+
     <View
       style={{ flex: 1, alignItems: "center", justifyContent: "space-around" }}
     >
@@ -142,5 +146,6 @@ export function FirebasePush() {
         }}
       />
     </View>
-  );
-}
+
+
+*/

@@ -4,6 +4,7 @@ import { ActivityIndicator } from "react-native";
 import { getIots } from "../lib/iot";
 import { FlatList } from "react-native";
 import { Screen } from "./Screen";
+import { FirebasePush } from "./FirebasePush";
 
 export function Main() {
   const [iots, setIots] = useState([]);
@@ -16,6 +17,7 @@ export function Main() {
 
   return (
     <Screen>
+      <FirebasePush />
       {iots.length === 0 ? (
         <ActivityIndicator color={"#fff"} size={"large"} />
       ) : (
